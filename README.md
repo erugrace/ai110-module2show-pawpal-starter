@@ -125,12 +125,22 @@ Sample test output:
 
 ## 📸 Demo Walkthrough
 
-Describe your app in numbered steps so a reader can follow along without watching a video:
+## 📸 Demo Walkthrough
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+The PawPal+ application allows users to manage pets and organize their care schedules. The following steps demonstrate the main workflow of the application:
+
+1. The user opens the PawPal+ application and views the pet scheduling interface.
+
+2. The user creates an owner profile and adds pets with information such as name, species, breed, and age.
+
+3. The user assigns tasks to each pet, including task details such as title, description, due date, and frequency.
+
+4. The scheduler collects tasks from all pets and displays upcoming tasks based on their due dates.
+
+5. The user can mark completed tasks as finished. For recurring daily tasks, the system automatically moves the task to the next scheduled day.
+
+6. The scheduler organizes tasks by time and identifies scheduling conflicts when multiple tasks are assigned at the same time.
+
+7. The user can review incomplete and upcoming tasks to better manage their pets' care routines.
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
