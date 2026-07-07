@@ -1,6 +1,9 @@
-# PawPal+ (Module 2 Project)
+# PawPal+
 
-You are building **PawPal+**, a Streamlit app that helps a pet owner plan care tasks for their pet.
+A pet scheduling application that helps owners organize and manage pet care tasks.
+
+PawPal+ is a pet management application that allows users to create pet profiles, 
+assign tasks, schedule care activities, and manage recurring responsibilities.
 
 ## Scenario
 
@@ -10,7 +13,44 @@ A busy pet owner needs help staying consistent with pet care. They want an assis
 - Consider constraints (time available, priority, owner preferences)
 - Produce a daily plan and explain why it chose that plan
 
-Your job is to design the system first (UML), then implement the logic in Python, then connect it to the Streamlit UI.
+## Features
+
+- Create pet profiles
+- Assign tasks to pets
+- Mark tasks as complete
+- Automatically reschedule recurring daily tasks
+- Sort tasks by due date
+- Detect scheduling conflicts
+- View upcoming incomplete tasks
+
+## Technologies
+
+- Python
+- Dataclasses
+- Pytest
+- Streamlit
+- Git/GitHub
+
+## Running the Project
+
+Clone the repository:
+
+git clone <repository-url>
+
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+
+Run tests:
+
+python -m pytest
+
+
+Run the application:
+
+streamlit run app.py
 
 ## What you will build
 
