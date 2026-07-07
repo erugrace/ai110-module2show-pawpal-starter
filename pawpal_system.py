@@ -18,10 +18,15 @@ class Owner:
     pets: list[Pet] = field(default_factory=list)
 
     def add_pet(self, pet: Pet) -> None:
-        raise NotImplementedError
+        """Add a pet to the owner's list and assign ownership."""
+        pet.owner = self
+        self.pets.append(pet)
 
     def remove_pet(self, pet: Pet) -> None:
-        raise NotImplementedError
+        if pet in self.pets:
+            self.pets.remove(pet)
+            pet.owner = None
+
 
 
 @dataclass
@@ -35,7 +40,8 @@ class Pet:
     tasks: list[Task] = field(default_factory=list)
 
     def add_task(self, task: Task) -> None:
-        raise NotImplementedError
+       task.pet = self
+       self.tasks.append(task)
 
 
 @dataclass
@@ -48,24 +54,41 @@ class Task:
     pet: Pet | None = None
 
     def mark_complete(self) -> None:
-        raise NotImplementedError
+       """Mark the task as completed."""
+       self.completed = True
 
     def reschedule(self, new_date: datetime) -> None:
-        raise NotImplementedError
+       self.due_date = new_date
 
 
 @dataclass
 class Scheduler:
-    tasks: list[Task] = field(default_factory=list)
+    owner: Owner
 
-    def schedule_task(self, task: Task) -> None:
-        raise NotImplementedError
+    def get_all_tasks(self) -> list[Task]:
+        tasks = []
+
+        for pet in self.owner.pets:
+            tasks.extend(pet.tasks)
+
+        return tasks
+
+    def schedule_task(self, pet: Pet, task: Task) -> None:
+        pet.add_task(task)
 
     def cancel_task(self, task: Task) -> None:
-        raise NotImplementedError
+        if task.pet and task in task.pet.tasks:
+            task.pet.tasks.remove(task)
+            task.pet = None
 
     def get_tasks_for_pet(self, pet: Pet) -> list[Task]:
-        raise NotImplementedError
+        return pet.tasks
 
     def get_upcoming_tasks(self) -> list[Task]:
-        raise NotImplementedError
+        now = datetime.now()
+
+        return [
+            task
+            for task in self.get_all_tasks()
+            if task.due_date >= now and not task.completed
+        ]
