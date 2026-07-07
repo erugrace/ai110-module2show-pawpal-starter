@@ -74,12 +74,14 @@ Sample test output:
 
 > Fill in once you've implemented scheduling logic.
 
+## Smarter Scheduling
+
 | Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `Scheduler.sort_by_time()` | Sorts tasks based on their due time so the schedule is displayed chronologically. |
+| Filtering | `Scheduler.get_incomplete_tasks()` | Filters out completed tasks and returns only pending tasks that still need attention. |
+| Conflict handling | `Scheduler.detect_conflicts()` | Checks for tasks scheduled at the same time and returns warning messages when duplicate time slots are detected. |
+| Recurring tasks | `Task.mark_complete()` / `Scheduler.reschedule_recurring_task()` | Automatically creates the next occurrence of a completed daily task so recurring activities continue in the schedule. |
 
 ## 📸 Demo Walkthrough
 

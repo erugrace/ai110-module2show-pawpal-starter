@@ -7,7 +7,7 @@ Method bodies are left as `raise NotImplementedError` stubs to be filled in.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 @dataclass
@@ -50,12 +50,15 @@ class Task:
     title: str
     description: str
     due_date: datetime
+    frequency: str = "once"
     completed: bool = False
     pet: Pet | None = None
 
-    def mark_complete(self) -> None:
-       """Mark the task as completed."""
-       self.completed = True
+    def mark_complete(self):
+      self.completed = True
+      if self.frequency == "daily":
+        self.due_date += timedelta(days=1)
+        self.completed = False
 
     def reschedule(self, new_date: datetime) -> None:
        self.due_date = new_date
@@ -92,3 +95,31 @@ class Scheduler:
             for task in self.get_all_tasks()
             if task.due_date >= now and not task.completed
         ]
+    def sort_by_time(self) -> list[Task]:
+       return sorted(
+           self.get_all_tasks(),
+           key=lambda task: task.due_date
+        )
+    def get_incomplete_tasks(self) -> list[Task]:
+        return [
+           task
+           for task in self.get_all_tasks()
+           if not task.completed
+        ]
+    def detect_conflicts(self):
+
+       conflicts = []
+
+       tasks = self.get_all_tasks()
+
+       for i in range(len(tasks)):
+
+            for j in range(i+1, len(tasks)):
+
+                if tasks[i].due_date == tasks[j].due_date:
+
+                    conflicts.append(
+                        f"{tasks[i].title} conflicts with {tasks[j].title}"
+                    )
+
+       return conflicts
